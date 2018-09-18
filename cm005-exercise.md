@@ -300,8 +300,10 @@ gapminder %>%
 
 How to pipe input in a differnt variable
 dat %>%  f(a=3, b=.)
-Now the value will go into b
 
+## `filter()`
+
+1. Only take data with population greater than 100 million.
 
 ```r
 gapminder %>%
@@ -324,12 +326,55 @@ gapminder %>%
 ## 10     Brazil  Americas  1992  67.057 155975974 6950.2830
 ## # ... with 67 more rows
 ```
-
-## `filter()`
-
-1. Only take data with population greater than 100 million.
-
 2. Of those, only take data from Asia.
+
+```r
+gapminder %>%
+  filter(pop > 100000000) %>% 
+  filter(continent == "Asia")
+```
+
+```
+## # A tibble: 52 x 6
+##       country continent  year  lifeExp       pop gdpPercap
+##        <fctr>    <fctr> <int>    <dbl>     <int>     <dbl>
+##  1 Bangladesh      Asia  1987 52.81900 103764241  751.9794
+##  2 Bangladesh      Asia  1992 56.01800 113704579  837.8102
+##  3 Bangladesh      Asia  1997 59.41200 123315288  972.7700
+##  4 Bangladesh      Asia  2002 62.01300 135656790 1136.3904
+##  5 Bangladesh      Asia  2007 64.06200 150448339 1391.2538
+##  6      China      Asia  1952 44.00000 556263527  400.4486
+##  7      China      Asia  1957 50.54896 637408000  575.9870
+##  8      China      Asia  1962 44.50136 665770000  487.6740
+##  9      China      Asia  1967 58.38112 754550000  612.7057
+## 10      China      Asia  1972 63.11888 862030000  676.9001
+## # ... with 42 more rows
+```
+
+Logical operators:
+
+```r
+a <- c(1, 4, 5, 6, 7)
+a > 5.5
+```
+
+```
+## [1] FALSE FALSE FALSE  TRUE  TRUE
+```
+
+```r
+a == 6
+```
+
+```
+## [1] FALSE FALSE FALSE  TRUE FALSE
+```
+
+As a logical operator: 
+! implies not equal to
+| is or 
+& is and 
+
 
 ## git stuff (Optional)
 
@@ -359,6 +404,24 @@ Your task is to use metaprogramming to check whether a response (like the one ab
 # Relational/Comparison and Logical Operators in R
 
 1. Find all entries of Canada and Algeria occuring in the '60s. 
+
+
+```r
+gapminder %>% 
+  filter(country == "Canada" | country == "Algeria") %>%
+  filter(year > 1959 & year < 1970)
+```
+
+```
+## # A tibble: 4 x 6
+##   country continent  year lifeExp      pop gdpPercap
+##    <fctr>    <fctr> <int>   <dbl>    <int>     <dbl>
+## 1 Algeria    Africa  1962  48.303 11000948  2550.817
+## 2 Algeria    Africa  1967  51.407 12760499  3246.992
+## 3  Canada  Americas  1962  71.300 18985849 13462.486
+## 4  Canada  Americas  1967  72.130 20819767 16076.588
+```
+
 
 2. Find all entries of Canada, and entries of Algeria occuring in the '60s. 
 3. Find all entries _not_ including Canada and Algeria.

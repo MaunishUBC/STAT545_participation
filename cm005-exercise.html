@@ -329,7 +329,13 @@ $(document).ready(function () {
 ##  9  1952  32.978       Somalia
 ## 10  1952  33.609        Guinea
 ## # ... with 1,694 more rows</code></pre>
-<p>How to pipe input in a differnt variable dat %&gt;% f(a=3, b=.) Now the value will go into b</p>
+<p>How to pipe input in a differnt variable dat %&gt;% f(a=3, b=.)</p>
+</div>
+<div id="filter" class="section level2">
+<h2><code>filter()</code></h2>
+<ol style="list-style-type: decimal">
+<li>Only take data with population greater than 100 million.</li>
+</ol>
 <pre class="r"><code>gapminder %&gt;%
   filter(pop &gt; 100000000)</code></pre>
 <pre><code>## # A tibble: 77 x 6
@@ -346,13 +352,33 @@ $(document).ready(function () {
 ##  9     Brazil  Americas  1987  65.205 142938076 7807.0958
 ## 10     Brazil  Americas  1992  67.057 155975974 6950.2830
 ## # ... with 67 more rows</code></pre>
-</div>
-<div id="filter" class="section level2">
-<h2><code>filter()</code></h2>
-<ol style="list-style-type: decimal">
-<li><p>Only take data with population greater than 100 million.</p></li>
-<li><p>Of those, only take data from Asia.</p></li>
+<ol start="2" style="list-style-type: decimal">
+<li>Of those, only take data from Asia.</li>
 </ol>
+<pre class="r"><code>gapminder %&gt;%
+  filter(pop &gt; 100000000) %&gt;% 
+  filter(continent == &quot;Asia&quot;)</code></pre>
+<pre><code>## # A tibble: 52 x 6
+##       country continent  year  lifeExp       pop gdpPercap
+##        &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1 Bangladesh      Asia  1987 52.81900 103764241  751.9794
+##  2 Bangladesh      Asia  1992 56.01800 113704579  837.8102
+##  3 Bangladesh      Asia  1997 59.41200 123315288  972.7700
+##  4 Bangladesh      Asia  2002 62.01300 135656790 1136.3904
+##  5 Bangladesh      Asia  2007 64.06200 150448339 1391.2538
+##  6      China      Asia  1952 44.00000 556263527  400.4486
+##  7      China      Asia  1957 50.54896 637408000  575.9870
+##  8      China      Asia  1962 44.50136 665770000  487.6740
+##  9      China      Asia  1967 58.38112 754550000  612.7057
+## 10      China      Asia  1972 63.11888 862030000  676.9001
+## # ... with 42 more rows</code></pre>
+<p>Logical operators:</p>
+<pre class="r"><code>a &lt;- c(1, 4, 5, 6, 7)
+a &gt; 5.5</code></pre>
+<pre><code>## [1] FALSE FALSE FALSE  TRUE  TRUE</code></pre>
+<pre class="r"><code>a == 6</code></pre>
+<pre><code>## [1] FALSE FALSE FALSE  TRUE FALSE</code></pre>
+<p>As a logical operator: ! implies not equal to | is or &amp; is and</p>
 </div>
 <div id="git-stuff-optional" class="section level2">
 <h2>git stuff (Optional)</h2>
@@ -379,9 +405,21 @@ if (my_commute &gt; 30) {
 <div id="relationalcomparison-and-logical-operators-in-r" class="section level1">
 <h1>Relational/Comparison and Logical Operators in R</h1>
 <ol style="list-style-type: decimal">
-<li><p>Find all entries of Canada and Algeria occuring in the ’60s.</p></li>
+<li>Find all entries of Canada and Algeria occuring in the ’60s.</li>
+</ol>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(country == &quot;Canada&quot; | country == &quot;Algeria&quot;) %&gt;%
+  filter(year &gt; 1959 &amp; year &lt; 1970)</code></pre>
+<pre><code>## # A tibble: 4 x 6
+##   country continent  year lifeExp      pop gdpPercap
+##    &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Algeria    Africa  1962  48.303 11000948  2550.817
+## 2 Algeria    Africa  1967  51.407 12760499  3246.992
+## 3  Canada  Americas  1962  71.300 18985849 13462.486
+## 4  Canada  Americas  1967  72.130 20819767 16076.588</code></pre>
+<ol start="2" style="list-style-type: decimal">
 <li>Find all entries of Canada, and entries of Algeria occuring in the ’60s.</li>
-<li><p>Find all entries <em>not</em> including Canada and Algeria.</p></li>
+<li>Find all entries <em>not</em> including Canada and Algeria.</li>
 </ol>
 </div>
 <div id="bonus-exercises" class="section level1">
