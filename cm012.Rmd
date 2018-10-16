@@ -1,6 +1,6 @@
 ---
 title: "cm012 Exercises: Factors"
-output: github_notebook
+output: github_document
 editor_options:
   chunk_output_type: inline
 ---
