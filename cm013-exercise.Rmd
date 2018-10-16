@@ -1,6 +1,6 @@
 ---
 title: "cm013 Exercise"
-output: html_notebook
+output: github_document
 editor_options: 
   chunk_output_type: inline
 ---
@@ -50,9 +50,9 @@ p_scales +
     scale_x_log10() +
     scale_colour_continuous(
         trans  = "log10", 
-        breaks = FILL_IN_BREAKS
+        breaks = 10
     ) +
-    FILL_IN_SCALE_FUNCTION(breaks=FILL_IN_BREAKS)
+    FILL_IN_SCALE_FUNCTION(breaks=10)
 ```
 
 2. Specify `scales::*_format` in the `labels` argument of a scale function to do the following:
@@ -131,8 +131,9 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length)) +
           y = "Sepal Length",
           title = "Sepal sizes of three plant species") +
     theme_bw() +
-    theme(FILL_IN_ARG_FOR_AXIS_TITLE = FILL_THIS_IN,
-          strip.background = FILL_THIS_IN)
+    theme(axis.text = element_text(size = 16),
+          strip.background = element_rect(fill = "orange"),
+          panel.background = element_rect(fill = "pink"))
 ```
 
 
@@ -160,7 +161,10 @@ Consider the following plot:
 1. Convert it to a `plotly` object by applying the `ggplotly()` function:
 
 ```{r}
-FILL_THIS_IN
+
+p %>% 
+  ggplotly() %>% 
+  plotly_json()
 ```
 
 2. You can save a plotly graph locally as an html file. Try saving the above:
